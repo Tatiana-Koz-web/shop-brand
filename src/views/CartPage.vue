@@ -1,15 +1,46 @@
 <template>
-  <h1>Cart page</h1>
+  <div id="page-wrap">
+  <h1>Shopping cart </h1>
+  <ProductsList :products="cartItems"/>
+  <h3 class="total-price">Total: ${{ totalPrice }}</h3>
+  <button class="checkout-button">Proceed to Checkout</button></div>
 </template>
 
 <script>
+import { cartItems } from "../fake-data";
+import ProductsList from "../components/ProductsList";
 export default {
-  name: "CartPage",
+  name: 'CartPage',
+  components:{
+    ProductsList,
+  },
+  data() {
+    return {
+      cartItems,
+    };
+  },
+  computed: {
+    totalPrice() {
+      return this.cartItems.reduce((sum, item) => sum + Number(item.price), 0);
+    },
+  },
 };
 </script>
 
 <style scoped>
 h1 {
-  color: rgb(0, 26, 255);
+  border-bottom: 1px solid black;
+  margin: 0;
+  margin-top: 16px;
+  padding: 16px;
+}
+
+#total-price {
+  padding: 16px;
+  text-align: right;
+}
+
+#checkout-button {
+  width: 100%;
 }
 </style>

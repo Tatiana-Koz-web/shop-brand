@@ -1,15 +1,22 @@
 <template>
-  <h1>Page Products</h1>
+  <div id="page-wrap">
+    <ProductsGrid :products="products" />
+    
+  </div>
 </template>
 
 <script>
+import { products } from "../fake-data";
+import ProductsGrid from "../components/ProductsGrid.vue";
 export default {
   name: "ProductsPage",
+  components: {
+    ProductsGrid,    
+  },
+  data() {
+    return {
+      products,
+    };
+  },
 };
 </script>
-
-<style scoped>
-h1 {
-  color: rgb(37, 31, 31);
-}
-</style>
